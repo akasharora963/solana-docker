@@ -40,6 +40,21 @@ This project provides a Dockerized setup for Solana development using the Anchor
     ```bash
     docker-compose run test
 
-3. For keys-sync 
+7. For keys-sync 
     ```bash
     docker-compose run keys-sync
+
+
+8. For loading account and funding it
+    ```bash
+    docker-compose run load-account <account_address>
+
+
+9. For changing anchor version
+    ```bash
+    docker-compose run anchor-version <version>
+
+
+10. For creating solana dapp
+    ```bash
+    docker-compose run create-dapp <project_name>

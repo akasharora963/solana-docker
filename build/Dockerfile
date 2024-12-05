@@ -44,4 +44,20 @@ RUN cargo install --git https://github.com/coral-xyz/anchor avm --locked --force
 # Build a dummy program to bootstrap the BPF SDK (doing this speeds up builds).
 RUN mkdir -p /tmp && cd tmp && anchor init dummy && cd dummy && anchor build
 
+# Load Account
+COPY scripts/load-account.sh /usr/local/bin/load-account.sh 
+RUN chmod +x /usr/local/bin/load-account.sh
+
+# Change Anchor version
+COPY scripts/anchor-version.sh /usr/local/bin/anchor-version.sh 
+RUN chmod +x /usr/local/bin/anchor-version.sh
+
+# Ensure Node.js and npm are installed 
+RUN apt-get update && apt-get install -y nodejs npm
+RUN npm install -g npx
+
+# create solana dapp
+COPY scripts/create-dapp.sh /usr/local/bin/create-dapp.sh
+RUN chmod +x /usr/local/bin/create-dapp.sh 
+
 WORKDIR /workdir

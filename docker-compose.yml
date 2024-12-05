@@ -73,3 +73,39 @@ services:
     working_dir: /workdir
     network_mode: "host"
     command: /bin/bash -c "cd ../tmp/dummy && anchor keys sync"  # Runs anchor keys sync
+
+  load-account:
+    build:
+      context: .
+      dockerfile: build/Dockerfile
+      args:
+        ANCHOR_CLI: v0.30.1
+        SOLANA_CLI: v2.1.0
+    volumes:
+      - .:/workdir
+    working_dir: /workdir
+    network_mode: "host"
+    command: /bin/bash -c "load-account.sh <account_address>"
+
+  anchor-version:
+    build:
+      context: .
+      dockerfile: build/Dockerfile
+      args:
+        ANCHOR_CLI: v0.30.1
+        SOLANA_CLI: v2.1.0
+    volumes:
+      - .:/workdir
+    working_dir: /workdir
+    network_mode: "host"
+    command: /bin/bash -c "anchor-version.sh <version>"
+
+  create-dapp:
+    build:
+      context: .
+      dockerfile: build/Dockerfile
+    volumes:
+      - .:/workdir
+    working_dir: /workdir
+    network_mode: "host"
+    command: /bin/bash -c "create-dapp.sh <project_name>"
