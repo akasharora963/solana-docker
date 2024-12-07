@@ -45,6 +45,11 @@ This project provides a Dockerized setup for Solana development using the Anchor
     docker-compose run keys-sync
 
 
+8. For changing network
+    ```bash
+    docker-compose run network <network_tag>
+
+
 8. For loading account and funding it
     ```bash
     docker-compose run load-account <account_address>

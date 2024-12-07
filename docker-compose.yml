@@ -74,6 +74,19 @@ services:
     network_mode: "host"
     command: /bin/bash -c "cd ../tmp/dummy && anchor keys sync"  # Runs anchor keys sync
 
+  network:
+    build:
+      context: .
+      dockerfile: build/Dockerfile
+      args:
+        ANCHOR_CLI: v0.30.1
+        SOLANA_CLI: v2.1.0
+    volumes:
+      - .:/workdir
+    working_dir: /workdir
+    network_mode: "host"
+    command: /bin/bash -c "change-network.sh <network_tag>"  # Runs anchor test
+
   load-account:
     build:
       context: .
